@@ -22,7 +22,7 @@ export default function Navbar() {
     <div className="md:h-24 h-20 fixed  z-20 ">
       <div
         className={`desktop-bar md:px-10 px-2 md:pt-4 h-20 md:h-24 w-full gap-x-2 fixed flex items-center justify-between ${
-          isSticky ? "bg-dark-green" : "bg-transparent"
+          isSticky ? "bg-dark-green" : "bg-dark-green"
         }`}
       >
         <div className="logo-title flex items-center gap-x-4">
