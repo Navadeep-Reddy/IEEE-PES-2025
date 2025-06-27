@@ -6,8 +6,8 @@ import { Turn } from "hamburger-react";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <div className="md:h-24 h-20  z-20">
-      <div className="desktop-bar md:px-10 px-2 md:pt-4 h-20 md:h-24 w-full gap-x-2 fixed bg-dark-green flex items-center justify-between">
+    <div className="md:h-24 h-20 fixed  z-20 ">
+      <div className="desktop-bar md:px-10 px-2 md:pt-4 h-20 md:h-24 w-full gap-x-2 fixed flex items-center justify-between">
         <div className="logo-title flex items-center gap-x-4">
           <img
             src={Logo}
