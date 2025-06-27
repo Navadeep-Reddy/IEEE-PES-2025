@@ -1,17 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../../src/assets/IEEE_PES_Logo.png";
 import College_Logo from "../../src/assets/SSN_Logo.png";
 import { Turn } from "hamburger-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isSticky, setIsSticky] = useState<boolean>(false);
+  useEffect(() => {
+    const setter = () => {
+        setIsSticky(window.scrollY > 50);
+    }
+
+    window.addEventListener("scroll", setter);
+
+    return  () => {
+        window.removeEventListener("scroll", setter);
+    }
+  }, []);
   return (
     <div className="md:h-24 h-20 fixed  z-20 ">
-      <div className="desktop-bar md:px-10 px-2 md:pt-4 h-20 md:h-24 w-full gap-x-2 fixed flex items-center justify-between">
+      <div className={`desktop-bar md:px-10 px-2 md:pt-4 h-20 md:h-24 w-full gap-x-2 fixed flex items-center justify-between ${isSticky? "bg-dark-green" : "bg-transparent"}`}>
         <div className="logo-title flex items-center gap-x-4">
           <img
             src={Logo}
-            className="md:max-h-28 md:max-w-28 lg:max-w-36 lg:max-h-36 max-h-24 max-w-24"
+            className="md:max-h-28 md:max-w-28 lg:max-w-36 lg:max-h-36 max-h-24 max-w-24 -mt-4"
           />
           <div className=" hidden xl:flex gap-x-2">
             <h1 className=" lg:text-2xl text-office-green font-bold">IEEE</h1>

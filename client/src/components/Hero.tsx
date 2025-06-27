@@ -234,7 +234,7 @@ export default function Hero() {
               empower students and connect them with industry leaders.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-mindaro hover:bg-mindaro/90 text-dark-green font-semibold py-3 px-8 rounded-lg transition-all duration-200 transform hover:scale-105">
+              <button className="bg-mindaro hover:bg-mindaro/40 hover:text-white text-dark-green font-semibold py-3 px-8 rounded-lg transition-all duration-200 transform ">
                 JOIN US
               </button>
               <button className="border-2 border-office-green text-office-green hover:bg-office-green hover:text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200">
