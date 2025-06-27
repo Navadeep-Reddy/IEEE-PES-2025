@@ -11,7 +11,7 @@ export default function Navbar() {
         <div className="logo-title flex items-center gap-x-4">
           <img
             src={Logo}
-            className="md:max-h-36 md:max-w-36 max-h-24 max-w-24"
+            className="md:max-h-28 md:max-w-28 lg:max-w-36 lg:max-h-36 max-h-24 max-w-24"
           />
           <div className=" hidden xl:flex gap-x-2">
             <h1 className=" lg:text-2xl text-office-green font-bold">IEEE</h1>
@@ -21,7 +21,7 @@ export default function Navbar() {
           </div>
         </div>
         <div className="navlink flex items-center gap-x-4 md:gap-x-12  lg:gap-x-24 ">
-          <ul className="lg:flex hidden  gap-x-6 text-white hover:cursor-pointer">
+          <ul className="lg:flex hidden text-lg gap-x-6 text-white hover:cursor-pointer">
             <li className="hover:text-mindaro duration-200">Home</li>
             <li>|</li>
             <li className="hover:text-mindaro duration-200">Events</li>
