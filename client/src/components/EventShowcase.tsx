@@ -92,7 +92,7 @@ export default function EventShowcase() {
                 {/* Navigation Arrows */}
                 <button
                   onClick={prevImage}
-                  className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-battleship-gray p-2 sm:p-3 rounded-full transition-all duration-200 shadow-lg border"
+                  className="absolute left-2 sm:left-4 invisible lg:visible  top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-battleship-gray p-2 sm:p-3 rounded-full transition-all duration-200 shadow-lg border"
                 >
                   <svg
                     className="w-4 h-4 sm:w-5 sm:h-5"
@@ -110,7 +110,7 @@ export default function EventShowcase() {
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-battleship-gray p-2 sm:p-3 rounded-full transition-all duration-200 shadow-lg border"
+                  className="absolute right-2 sm:right-4 top-1/2 invisible lg:visible transform -translate-y-1/2 bg-white/60 hover:bg-white text-battleship-gray p-2 sm:p-3 rounded-full transition-all duration-200 shadow-lg border"
                 >
                   <svg
                     className="w-4 h-4 sm:w-5 sm:h-5"

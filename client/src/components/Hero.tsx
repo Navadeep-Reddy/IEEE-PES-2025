@@ -1,4 +1,10 @@
+import { Link } from 'react-scroll';
+
 export default function Hero() {
+  const handleJoinUsClick = () => {
+    alert("Applications not open");
+  };
+
   return (
     <div className="relative min-h-screen w-full bg-dark-green overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
@@ -234,12 +240,21 @@ export default function Hero() {
               empower students and connect them with industry leaders.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-mindaro hover:bg-mindaro/40 hover:text-white text-dark-green font-semibold py-3 px-8 rounded-lg transition-all duration-200 transform ">
+              <button 
+                onClick={handleJoinUsClick}
+                className="bg-mindaro hover:bg-mindaro/40 hover:text-white text-dark-green font-semibold py-3 px-8 rounded-lg transition-all duration-200 transform "
+              >
                 JOIN US
               </button>
-              <button className="border-2 border-office-green text-office-green hover:bg-office-green hover:text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200">
+              <Link
+                to="commitment"
+                smooth={true}
+                duration={800}
+                offset={-80}
+                className="border-2 border-office-green text-office-green hover:bg-office-green hover:text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 cursor-pointer inline-block text-center"
+              >
                 LEARN MORE
-              </button>
+              </Link>
             </div>
           </div>
         </div>

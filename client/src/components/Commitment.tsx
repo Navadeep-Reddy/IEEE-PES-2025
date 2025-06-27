@@ -1,6 +1,9 @@
 export default function Commitment() {
   return (
-    <div className="relative min-h-screen w-full bg-dark-green overflow-hidden py-8 sm:py-12 md:py-16 lg:py-24">
+    <div
+      id="commitment"
+      className="relative min-h-screen w-full bg-dark-green overflow-hidden py-8 sm:py-12 md:py-16 lg:py-24"
+    >
       {/* Background Ring SVG */}
       <div className="absolute inset-0 pointer-events-none">
         <svg
