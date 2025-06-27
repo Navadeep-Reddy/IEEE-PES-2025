@@ -6,24 +6,11 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isSticky, setIsSticky] = useState<boolean>(false);
-  useEffect(() => {
-    const setter = () => {
-      setIsSticky(window.scrollY > 50);
-    };
 
-    window.addEventListener("scroll", setter);
-
-    return () => {
-      window.removeEventListener("scroll", setter);
-    };
-  }, []);
   return (
     <div className="md:h-24 h-20 fixed  z-20 ">
       <div
-        className={`desktop-bar md:px-10 px-2 md:pt-4 h-20 md:h-24 w-full gap-x-2 fixed flex items-center justify-between ${
-          isSticky ? "bg-dark-green" : "bg-transparent"
-        }`}
+        className={`desktop-bar md:px-10 px-2 md:pt-4 h-20 md:h-24 w-full gap-x-2 fixed flex items-center justify-between bg-dark-green`}
       >
         <div className="logo-title flex items-center gap-x-4">
           <img
@@ -80,38 +67,42 @@ export default function Navbar() {
       >
         <div className="px-6 py-4">
           <ul className="flex flex-col text-white">
-            <li
-              className="hover:text-mindaro cursor-pointer  font-medium
-                         transform hover:translate-x-2 transition-all duration-200 
-                         py-4 border-b border-office-green/15"
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </li>
-            <li
-              className="hover:text-mindaro cursor-pointer  font-medium
-                         transform hover:translate-x-2 transition-all duration-200
-                         py-4 border-b border-office-green/15"
-              onClick={() => setIsOpen(false)}
-            >
-              Events
-            </li>
-            <li
-              className="hover:text-mindaro cursor-pointer  font-medium
-                         transform hover:translate-x-2 transition-all duration-200
-                         py-4 border-b border-office-green/15"
-              onClick={() => setIsOpen(false)}
-            >
-              Team
-            </li>
-            <li
-              className="hover:text-mindaro cursor-pointer  font-medium
-                         transform hover:translate-x-2 transition-all duration-200
-                         py-4 border-b border-office-green/15"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
-            </li>
+            <Link to="/" onClick={() => setIsOpen(false)}>
+              <li
+                className="hover:text-mindaro cursor-pointer  font-medium
+                           transform hover:translate-x-2 transition-all duration-200 
+                           py-4 border-b border-office-green/15"
+              >
+                Home
+              </li>
+            </Link>
+            <Link to="/events" onClick={() => setIsOpen(false)}>
+              <li
+                className="hover:text-mindaro cursor-pointer  font-medium
+                           transform hover:translate-x-2 transition-all duration-200
+                           py-4 border-b border-office-green/15"
+              >
+                Events
+              </li>
+            </Link>
+            <Link to="/team" onClick={() => setIsOpen(false)}>
+              <li
+                className="hover:text-mindaro cursor-pointer  font-medium
+                           transform hover:translate-x-2 transition-all duration-200
+                           py-4 border-b border-office-green/15"
+              >
+                Team
+              </li>
+            </Link>
+            <Link to="/contact" onClick={() => setIsOpen(false)}>
+              <li
+                className="hover:text-mindaro cursor-pointer  font-medium
+                           transform hover:translate-x-2 transition-all duration-200
+                           py-4 border-b border-office-green/15"
+              >
+                Contact
+              </li>
+            </Link>
           </ul>
         </div>
       </div>

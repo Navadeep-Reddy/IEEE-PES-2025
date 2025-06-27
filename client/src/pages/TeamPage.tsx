@@ -1,8 +1,6 @@
-import OpaqueNavbar from "@/components/OpaqueNavbar";
-export default function TeamPage() {
+export default function EventsPage() {
   return (
     <div>
-      <OpaqueNavbar />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Link } from 'react-scroll';
+import { Link } from "react-scroll";
 
 export default function Hero() {
   const handleJoinUsClick = () => {
@@ -10,7 +10,7 @@ export default function Hero() {
       <div className="absolute inset-0 pointer-events-none">
         <svg
           className="absolute -top-16 -right-16 w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[600px] lg:h-[600px] 
-                     md:-top-24 md:-right-24 lg:-top-32 lg:-right-32 opacity-8"
+                     md:-top-24 md:-right-24 lg:-top-32 lg:-right-32 opacity-8 z-30"
           viewBox="0 0 600 600"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ export default function Hero() {
         {/* Middle row - Large ring on the left */}
         <svg
           className="absolute top-1/2 -left-20 w-[350px] h-[350px] md:w-[525px] md:h-[525px] lg:w-[700px] lg:h-[700px] 
-                     md:-left-30 lg:-left-40 opacity-10 transform -translate-y-1/2"
+                     md:-left-30 lg:-left-40 opacity-10 transform -translate-y-1/2 z-30"
           viewBox="0 0 700 700"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +157,7 @@ export default function Hero() {
         {/* Bottom row - Large ring on the right */}
         <svg
           className="absolute -bottom-20 -right-12 w-[250px] h-[250px] md:w-[375px] md:h-[375px] lg:w-[500px] lg:h-[500px] 
-                     md:-bottom-30 md:-right-18 lg:-bottom-40 lg:-right-24 opacity-12"
+                     md:-bottom-30 md:-right-18 lg:-bottom-40 lg:-right-24 opacity-12 z-30"
           viewBox="0 0 500 500"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +240,7 @@ export default function Hero() {
               empower students and connect them with industry leaders.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button 
+              <button
                 onClick={handleJoinUsClick}
                 className="bg-mindaro hover:bg-mindaro/40 hover:text-white text-dark-green font-semibold py-3 px-8 rounded-lg transition-all duration-200 transform "
               >
