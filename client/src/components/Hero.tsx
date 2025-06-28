@@ -469,13 +469,13 @@ export default function Hero() {
                 whileHover={
                   !isMobile
                     ? {
-                        scale: 1.05,
+                        scale: 1,
                         boxShadow: "0 10px 25px rgba(116, 182, 83, 0.3)",
                         rotateX: -5,
                       }
                     : {}
                 }
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 <Link
