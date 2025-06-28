@@ -1,6 +1,47 @@
 import { Link } from "react-scroll";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 
 export default function Hero() {
+  const heroTextRef = useRef<HTMLHeadingElement>(null);
+
+  useGSAP(() => {
+    if (heroTextRef.current) {
+      // Split text into words for animation
+      const words = heroTextRef.current.querySelectorAll(".word");
+
+      // Initial state - hide all words
+      gsap.set(words, {
+        opacity: 0,
+        y: 100,
+        rotationX: -90,
+        transformOrigin: "50% 100%",
+      });
+
+      // Animate words in sequence
+      gsap.to(words, {
+        opacity: 1,
+        y: 0,
+        rotationX: 0,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: "back.out(1.7)",
+        delay: 0.5,
+      });
+
+      // Add a subtle glow effect to IEEE PES
+      gsap.to(".ieee-pes-text", {
+        textShadow: "0 0 20px rgba(174, 219, 129, 0.5)",
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 2,
+      });
+    }
+  }, []);
+
   const handleJoinUsClick = () => {
     alert("Applications not open");
   };
@@ -229,9 +270,19 @@ export default function Hero() {
       <div className="relative z-10 flex items-center justify-center min-h-screen px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-left lg:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
-              Powering Tomorrow with{" "}
-              <span className="text-mindaro">IEEE PES</span>
+            <h1
+              ref={heroTextRef}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight"
+            >
+              <span className="word inline-block mr-4">Powering</span>
+              <span className="word inline-block mr-4">Tomorrow</span>
+              <span className="word inline-block mr-4">with</span>
+              <span className="word ieee-pes-text inline-block text-mindaro">
+                IEEE
+              </span>
+              <span className="word ieee-pes-text inline-block ml-2 text-mindaro">
+                PES
+              </span>
             </h1>
             <p className="text-lg md:text-xl text-baby-powder/90 max-w-3xl mb-8 leading-relaxed">
               IEEE PES SSN Student Chapter brings together minds passionate
