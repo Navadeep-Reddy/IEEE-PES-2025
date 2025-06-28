@@ -1,59 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 
 export default function GooeyLinks() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const waveRef = useRef<HTMLDivElement>(null);
-  const linksRef = useRef<HTMLDivElement>(null);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const scrollY = window.scrollY;
-
-      // Simple approach: calculate based on how much we've scrolled past the component start
-      const elementTop = rect.top + scrollY;
-      const currentScroll = scrollY;
-
-      let progress = 0;
-
-      // Start animation when we reach the component
-      if (currentScroll > elementTop - windowHeight) {
-        const scrolledPastStart = currentScroll - (elementTop - windowHeight);
-        const animationDistance = windowHeight; // Animation completes over one viewport height
-        progress = Math.min(scrolledPastStart / animationDistance, 1);
-        progress = Math.max(progress, 0);
-      }
-
-      setScrollProgress(progress);
-      setIsExpanded(progress > 0.3);
-      console.log(
-        "Simple scroll - ScrollY:",
-        scrollY,
-        "Progress:",
-        progress,
-        "ElementTop:",
-        elementTop
-      );
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial call
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const waveHeight = `${Math.max(5, Math.min(100, 5 + scrollProgress * 95))}%`;
-  const linksOpacity =
-    scrollProgress > 0.5 ? Math.min(1, (scrollProgress - 0.5) / 0.5) : 0;
-  const textOpacity =
-    scrollProgress < 0.4 ? Math.max(0, 1 - scrollProgress / 0.4) : 0;
-
   const socialLinks = [
     {
       name: "LinkedIn",
@@ -97,146 +44,34 @@ export default function GooeyLinks() {
   ];
 
   return (
-    <div
-      ref={containerRef}
-      className="relative min-h-screen bg-battleship-gray overflow-hidden"
-    >
-      {/* Initial Text */}
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center z-20"
-        style={{ opacity: textOpacity }}
-      >
-        <div className="text-center px-4">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
-            Scroll For
-          </h2>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-mindaro">
-            Links
-          </h2>
-          <div className="mt-8 animate-bounce">
-            <svg
-              className="w-8 h-8 mx-auto text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* White Wave */}
-      <motion.div
-        ref={waveRef}
-        className="absolute bottom-0 left-0 right-0 bg-white z-10"
-        style={{ height: waveHeight }}
-      >
-        {/* Wave SVG */}
-        <div className="absolute top-0 left-0 right-0 h-20 overflow-hidden">
-          <svg
-            className="absolute top-0 left-0 w-full h-full"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
+    <div className="relative min-h-[60vh] bg-white overflow-hidden flex flex-col items-center justify-center py-16">
+      <h2 className="text-3xl md:text-5xl font-bold text-battleship-gray mb-8">
+        Connect With Us
+      </h2>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-8 md:gap-12">
+        {socialLinks.map((link) => (
+          <a
+            key={link.name}
+            href={link.url}
+            target={link.name !== "Email" ? "_blank" : undefined}
+            rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
+            className="group w-24 h-24  flex flex-col items-center p-6 rounded-xl bg-gray-50 hover:bg-dark-green transition-all duration-300  hover:shadow-xl"
           >
-            <defs>
-              <linearGradient
-                id="waveGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="0%"
-              >
-                <stop offset="0%" stopColor="white" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="white" stopOpacity="1" />
-                <stop offset="100%" stopColor="white" stopOpacity="0.8" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0,60 C300,20 600,100 900,40 C1050,10 1150,80 1200,60 L1200,120 L0,120 Z"
-              fill="url(#waveGradient)"
-            />
-            <path
-              d="M0,80 C300,40 600,120 900,60 C1050,30 1150,100 1200,80 L1200,120 L0,120 Z"
-              fill="white"
-              fillOpacity="0.7"
-            />
-          </svg>
-        </div>
-
-        {/* Social Links */}
-        <motion.div
-          ref={linksRef}
-          className="relative z-20 flex items-center justify-center h-full pt-20"
-          style={{ opacity: linksOpacity }}
-        >
-          <div className="text-center px-4">
-            <motion.h3
-              className="text-3xl md:text-5xl font-bold text-battleship-gray mb-8"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: isExpanded ? 0 : 50, opacity: isExpanded ? 1 : 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Connect With Us
-            </motion.h3>
-
-            <motion.div
-              className="flex flex-col sm:flex-row items-center justify-center gap-8 md:gap-12"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: isExpanded ? 0 : 50, opacity: isExpanded ? 1 : 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              {socialLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.url}
-                  target={link.name !== "Email" ? "_blank" : undefined}
-                  rel={
-                    link.name !== "Email" ? "noopener noreferrer" : undefined
-                  }
-                  className="group flex flex-col items-center p-6 rounded-xl bg-gray-50 hover:bg-mindaro transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{
-                    y: isExpanded ? 0 : 30,
-                    opacity: isExpanded ? 1 : 0,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.6 + index * 0.1,
-                  }}
-                >
-                  <div className="text-battleship-gray group-hover:text-white transition-colors duration-300 mb-3">
-                    {link.icon}
-                  </div>
-                  <span className="text-sm md:text-base font-semibold text-battleship-gray group-hover:text-white transition-colors duration-300">
-                    {link.name}
-                  </span>
-                </motion.a>
-              ))}
-            </motion.div>
-
-            <motion.p
-              className="mt-8 text-lg md:text-xl text-battleship-gray/80 max-w-2xl mx-auto"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: isExpanded ? 0 : 30, opacity: isExpanded ? 1 : 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              Follow us on social media for the latest updates and connect with
-              our community!
-            </motion.p>
-          </div>
-        </motion.div>
-      </motion.div>
-
+            <div className="text-battleship-gray group-hover:text-white transition-colors duration-300 mb-3">
+              {link.icon}
+            </div>
+            <span className="text-sm md:text-base font-semibold text-battleship-gray group-hover:text-white transition-colors duration-300">
+              {link.name}
+            </span>
+          </a>
+        ))}
+      </div>
+      <p className="mt-8 text-lg md:text-xl text-battleship-gray/80 max-w-2xl mx-auto text-center">
+        Follow us on social media for the latest updates and connect with our
+        community!
+      </p>
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent"></div>
       </div>
     </div>
