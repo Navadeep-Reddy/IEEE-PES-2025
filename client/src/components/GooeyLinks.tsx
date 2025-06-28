@@ -55,7 +55,7 @@ export default function GooeyLinks() {
             href={link.url}
             target={link.name !== "Email" ? "_blank" : undefined}
             rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
-            className="group w-24 h-24  flex flex-col items-center p-6 rounded-xl bg-gray-50 hover:bg-dark-green transition-all duration-300  hover:shadow-xl"
+            className="group w-24 h-24 md:h-28 md:w-28  flex flex-col items-center p-6 rounded-xl bg-gray-50 hover:bg-dark-green transition-all duration-300  hover:shadow-xl"
           >
             <div className="text-battleship-gray group-hover:text-white transition-colors duration-300 mb-3">
               {link.icon}
