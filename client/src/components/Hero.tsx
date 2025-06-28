@@ -140,7 +140,7 @@ export default function Hero() {
   }, [isMobile]);
 
   const handleJoinUsClick = () => {
-    alert("Applications not open");
+    window.open("https://chat.whatsapp.com/J0g0LcJ1c6V0b53r6klv8F", "_blank");
   };
 
   return (
@@ -405,7 +405,7 @@ export default function Hero() {
 
       {/* Interactive Content Area */}
       <div className="relative z-10 flex items-center justify-center min-h-screen px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto pt-24 md:pt-0">
           <motion.div
             className="text-left lg:text-left"
             initial={{ opacity: 0, y: 50 }}
@@ -422,10 +422,7 @@ export default function Hero() {
               <span className="word inline-block mr-4">Tomorrow</span>
               <span className="word inline-block mr-4">with</span>
               <span className="word ieee-pes-text inline-block text-mindaro">
-                IEEE
-              </span>
-              <span className="word ieee-pes-text inline-block ml-2 text-mindaro">
-                PES
+                IEEE {isMobile ? "POWER AND ENERGY SOCIETY" : "PES"}
               </span>
             </motion.h1>
 
