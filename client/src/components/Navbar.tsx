@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Logo from "../../src/assets/IEEE_PES_Logo.png";
 import College_Logo from "../../src/assets/SSN_Logo.png";
 import { Turn } from "hamburger-react";
