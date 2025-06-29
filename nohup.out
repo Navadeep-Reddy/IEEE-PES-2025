@@ -1,0 +1,80 @@
+2025-06-29 15:39:49,713 [   1854]   WARN - #c.i.s.c.i.StationSocketConnectionLoop - Discovery connection failed with NoSuchFileException (/run/user/1000/jb.station.sock)
+
+(idea:26346): Gtk-WARNING **: 15:40:01.994: gtk_disable_setlocale() must be called before gtk_init()
+2025-06-29 15:40:02,284 [  14425]   WARN - #org.intellij.plugins.markdown.ui.preview.jcef.impl.JcefBrowserPipeImpl - No subscribers for documentReady!
+Attached data: 
+2025-06-29 15:42:20,047 [ 152188]   WARN - #c.i.o.v.i.l.NativeFileWatcherImpl - Watcher terminated with exit code 143
+WARN: Broken pipe
+java.io.IOException: Broken pipe
+	at java.base/sun.nio.ch.SocketDispatcher.write0(Native Method)
+	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:62)
+	at java.base/sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:137)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:102)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:58)
+	at java.base/sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:542)
+	at com.intellij.platform.ide.bootstrap.DirectoryLock.sendLines(DirectoryLock.java:448)
+	at com.intellij.platform.ide.bootstrap.DirectoryLock.handleConnection(DirectoryLock.java:369)
+	at com.intellij.platform.ide.bootstrap.DirectoryLock.lambda$acceptConnections$3(DirectoryLock.java:353)
+	at com.intellij.util.concurrency.ChildContext$runInChildContext$1.invoke(propagation.kt:102)
+	at com.intellij.util.concurrency.ChildContext$runInChildContext$1.invoke(propagation.kt:102)
+	at com.intellij.util.concurrency.ChildContext.runInChildContext(propagation.kt:108)
+	at com.intellij.util.concurrency.ChildContext.runInChildContext(propagation.kt:102)
+	at com.intellij.util.concurrency.ContextRunnable.run(ContextRunnable.java:27)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1$1.run(Executors.java:735)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1$1.run(Executors.java:732)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1.run(Executors.java:732)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+**Start Failed**
+
+Internal error
+
+com.intellij.platform.ide.bootstrap.DirectoryLock$CannotActivateException: Process "/home/navadeep/Pictures/Apps/idea-IU-251.25410.129/bin/idea" (26346) is still running and does not respond.
+
+If the IDE is starting up or shutting down, please try again later.
+If the process seems stuck, please try killing it (WARNING: unsaved data might be lost).
+
+Stacktrace:
+	at com.intellij.platform.ide.bootstrap.DirectoryLock.lockOrActivate(DirectoryLock.java:185)
+	at com.intellij.platform.ide.bootstrap.StartupUtil.lockSystemDirs(startup.kt:504)
+	at com.intellij.platform.ide.bootstrap.StartupUtil.access$lockSystemDirs(startup.kt:1)
+	at com.intellij.platform.ide.bootstrap.StartupUtil$startApplication$lockSystemDirsJob$1$1.invokeSuspend(startup.kt:112)
+	at com.intellij.platform.ide.bootstrap.StartupUtil$startApplication$lockSystemDirsJob$1$1.invoke(startup.kt)
+	at com.intellij.platform.ide.bootstrap.StartupUtil$startApplication$lockSystemDirsJob$1$1.invoke(startup.kt)
+	at kotlinx.coroutines.intrinsics.UndispatchedKt.startUndispatchedOrReturn(Undispatched.kt:62)
+	at kotlinx.coroutines.BuildersKt__Builders_commonKt.withContext(Builders.common.kt:163)
+	at kotlinx.coroutines.BuildersKt.withContext(Unknown Source)
+	at com.intellij.platform.diagnostic.telemetry.impl.TracerKt.span(tracer.kt:56)
+	at com.intellij.platform.diagnostic.telemetry.impl.TracerKt.span$default(tracer.kt:48)
+	at com.intellij.platform.ide.bootstrap.StartupUtil$startApplication$lockSystemDirsJob$1.invokeSuspend(startup.kt:111)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:104)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:608)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:873)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:763)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:750)
+	Suppressed: java.net.BindException: Address already in use
+		at java.base/sun.nio.ch.UnixDomainSockets.bind0(Native Method)
+		at java.base/sun.nio.ch.UnixDomainSockets.bind(UnixDomainSockets.java:129)
+		at java.base/sun.nio.ch.ServerSocketChannelImpl.unixBind(ServerSocketChannelImpl.java:326)
+		at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:299)
+		at java.base/java.nio.channels.ServerSocketChannel.bind(ServerSocketChannel.java:224)
+		at com.intellij.platform.ide.bootstrap.DirectoryLock.tryListen(DirectoryLock.java:261)
+		at com.intellij.platform.ide.bootstrap.DirectoryLock.lockOrActivate(DirectoryLock.java:159)
+		... 17 more
+	Suppressed: java.net.SocketTimeoutException: Timeout: ACK
+		at com.intellij.platform.ide.bootstrap.DirectoryLock.tryConnect(DirectoryLock.java:318)
+		at com.intellij.platform.ide.bootstrap.DirectoryLock.lockOrActivate(DirectoryLock.java:168)
+		... 17 more
+
+-----
+JRE: 21.0.6+9-b895.109 amd64 (JetBrains s.r.o.)
+/home/navadeep/Pictures/Apps/idea-IU-251.25410.129/jbr
+2025-06-29 15:42:33,212 [   2246]   WARN - #c.i.s.c.i.StationSocketConnectionLoop - Discovery connection failed with NoSuchFileException (/run/user/1000/jb.station.sock)
+
+(idea:29896): Gtk-WARNING **: 15:42:39.208: gtk_disable_setlocale() must be called before gtk_init()
+2025-06-29 15:42:39,506 [   8540]   WARN - #org.intellij.plugins.markdown.ui.preview.jcef.impl.JcefBrowserPipeImpl - No subscribers for documentReady!
+Attached data: 
