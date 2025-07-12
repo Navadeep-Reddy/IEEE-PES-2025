@@ -76,7 +76,7 @@ export default function Team() {
       "Anshul L":"/team/Anshul.jpg",
       "Samyuktaa":"/team/Samyuktaa.jpeg",
       "Sanjana Y":"/team/sanjana.jpg",
-      "Sanjay M":"\team\Sanjay.jpg"
+      "Sanjay M":"/team/Sanjay.jpg"
   };
 
   const toggleTeam = (team) => setSelectedTeam(team);
