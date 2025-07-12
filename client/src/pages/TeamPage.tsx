@@ -64,7 +64,7 @@ export default function Team() {
     "Harinath Vaitheeswar S": "/team/Harinath.jpg",
     "Jayasurya S": "/team/Jayasurya.png",
     "Avinash R": "/team/Avinash R.jpg",
-    "HarshikaaSundari": "/team/harshikaa.jpg",
+    "HarshikaaSundari": "/team/Harshikaa.jpg",
     "Praveen N R": "/team/Praveen.jpg",
     "Yashasvee": "/team/yashasvee.jpg",
     "Shivashankar P": "/team/Shivashankar.jpg",
