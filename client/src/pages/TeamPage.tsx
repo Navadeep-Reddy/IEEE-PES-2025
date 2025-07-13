@@ -64,18 +64,18 @@ export default function Team() {
     "Harinath Vaitheeswar S": "/team/Harinath.jpg",
     "Jayasurya S": "/team/Jayasurya.png",
     "Avinash R": "/team/Avinash R.jpg",
-    "HarshikaaSundari": "/team/Harshikaa.jpg",
+    HarshikaaSundari: "/team/Harshikaa.jpg",
     "Praveen N R": "/team/Praveen.jpg",
-    "Yashasvee": "/team/yashasvee.jpg",
+    Yashasvee: "/team/yashasvee.jpg",
     "Shivashankar P": "/team/Shivashankar.jpg",
     "Tanyashree M": "/team/Tanyashree.jpg",
     "Leelasri B": "/team/Leelasri.jpg",
     "Shravanthi D": "/team/Shravanthi.jpg",
     "Adithya Sivakumar": "/team/Adi.jpeg",
     "Diya Bharath": "/team/Diya.jpg",
-    "RoopaSree B": "/team/Roopasree.jpeg",
+    "RoopaSree B": "/team/Roopashree.jpg",
     "Anshul L": "/team/Anshul.jpg",
-    "Samyuktaa": "/team/Samyuktaa.jpeg",
+    Samyuktaa: "/team/Samyuktaa.jpeg",
     "Sanjana Y": "/team/sanjana.jpg",
     "Sanjay M": "/team/Sanjay.jpg",
   };
@@ -101,7 +101,8 @@ export default function Team() {
           {quote}
         </h2>
         <p className="text-center text-[#e6f86d] text-md italic mb-8 animate-fade-in-up relative z-10 max-w-2xl mx-auto">
-          Fusing our energies dynamically to create electric achievements and transformative outcomes.
+          Fusing our energies dynamically to create electric achievements and
+          transformative outcomes.
         </p>
 
         {/* Team Graph */}
@@ -114,25 +115,49 @@ export default function Team() {
               "M400 230 C 520 320, 600 400, 660 460",
               "M400 230 C 400 350, 400 450, 400 530",
             ].map((d, i) => (
-              <path key={i} d={d} stroke="#e6f86d" strokeWidth="2.5" fill="none" className="glowing-line" />
+              <path
+                key={i}
+                d={d}
+                stroke="#e6f86d"
+                strokeWidth="2.5"
+                fill="none"
+                className="glowing-line"
+              />
             ))}
           </svg>
 
           {/* Chairperson */}
-          <div onClick={() => setSelectedMember({ name: "Rithvikha V", image: memberImages["Rithvikha V"] })}
-            className="absolute top-[36%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#e6f86d] text-[#203E2E] rounded-2xl p-4 w-52 text-center shadow-xl border-2 border-white animate-glow-text cursor-pointer z-10">
-            <img src={memberImages["Rithvikha V"]} className="rounded-full w-20 h-20 mx-auto mb-2" />
+          <div
+            onClick={() =>
+              setSelectedMember({
+                name: "Rithvikha V",
+                image: memberImages["Rithvikha V"],
+              })
+            }
+            className="absolute top-[36%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#e6f86d] text-[#203E2E] rounded-2xl p-4 w-52 text-center shadow-xl border-2 border-white animate-glow-text cursor-pointer z-10"
+          >
+            <img
+              src={memberImages["Rithvikha V"]}
+              className="rounded-full w-20 h-20 mx-auto mb-2"
+            />
             <p className="text-sm font-semibold">CHAIR PERSON</p>
             <p className="text-lg font-bold">Rithvikha V</p>
           </div>
 
           {/* Team Circles */}
           {Object.keys(teams).map((teamName) => (
-            <div key={teamName} onClick={() => toggleTeam(teamName)}
+            <div
+              key={teamName}
+              onClick={() => toggleTeam(teamName)}
               className={`group absolute bg-[#e6f86d] text-[#203E2E] rounded-full w-32 h-32 flex flex-col items-center justify-center cursor-pointer 
-              transition duration-300 hover:scale-105 shadow-md hover:shadow-lg ${positions[teamName]}`}>
-              <p className="text-sm font-bold whitespace-pre-line text-center">{teamName}</p>
-              <span className="mt-1 text-[10px] opacity-60 hidden group-hover:block">👁 View Members</span>
+              transition duration-300 hover:scale-105 shadow-md hover:shadow-lg ${positions[teamName]}`}
+            >
+              <p className="text-sm font-bold whitespace-pre-line text-center">
+                {teamName}
+              </p>
+              <span className="mt-1 text-[10px] opacity-60 hidden group-hover:block">
+                👁 View Members
+              </span>
             </div>
           ))}
         </div>
@@ -141,14 +166,29 @@ export default function Team() {
         {selectedTeam && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
             <div className="popup-special text-white p-8 w-[90%] max-w-xl shadow-2xl relative animate-fade-in-up">
-              <button onClick={() => setSelectedTeam(null)} className="absolute top-3 right-4 text-xl font-bold text-[#e6f86d]">✖</button>
-              <h2 className="text-3xl font-extrabold text-center mb-6 bg-gradient-to-r from-[#e6f86d] via-white to-[#e6f86d] text-transparent bg-clip-text animate-glow-text">{selectedTeam}</h2>
+              <button
+                onClick={() => setSelectedTeam(null)}
+                className="absolute top-3 right-4 text-xl font-bold text-[#e6f86d]"
+              >
+                ✖
+              </button>
+              <h2 className="text-3xl font-extrabold text-center mb-6 bg-gradient-to-r from-[#e6f86d] via-white to-[#e6f86d] text-transparent bg-clip-text animate-glow-text">
+                {selectedTeam}
+              </h2>
               <ul className="text-center space-y-3">
                 {teams[selectedTeam].map((fullName, idx) => {
                   const [name] = fullName.split(" - ");
                   return (
-                    <li key={idx} onClick={() => setSelectedMember({ name, image: memberImages[name] || "/team/default.jpg" })}
-                      className="text-lg font-semibold hover:text-[#e6f86d] cursor-pointer">
+                    <li
+                      key={idx}
+                      onClick={() =>
+                        setSelectedMember({
+                          name,
+                          image: memberImages[name] || "/team/default.jpg",
+                        })
+                      }
+                      className="text-lg font-semibold hover:text-[#e6f86d] cursor-pointer"
+                    >
                       ✨ {fullName}
                     </li>
                   );
@@ -162,9 +202,19 @@ export default function Team() {
         {selectedMember && (
           <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 backdrop-blur-sm">
             <div className="popup-special text-white p-6 w-[90%] max-w-sm relative animate-fade-in-up">
-              <button onClick={() => setSelectedMember(null)} className="absolute top-3 right-4 text-xl font-bold text-[#e6f86d]">✖</button>
-              <img src={selectedMember.image} className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-[#e6f86d]" />
-              <p className="text-2xl font-bold text-center underline decoration-[#e6f86d]">{selectedMember.name}</p>
+              <button
+                onClick={() => setSelectedMember(null)}
+                className="absolute top-3 right-4 text-xl font-bold text-[#e6f86d]"
+              >
+                ✖
+              </button>
+              <img
+                src={selectedMember.image}
+                className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-[#e6f86d]"
+              />
+              <p className="text-2xl font-bold text-center underline decoration-[#e6f86d]">
+                {selectedMember.name}
+              </p>
             </div>
           </div>
         )}
