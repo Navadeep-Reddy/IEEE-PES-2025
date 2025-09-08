@@ -83,6 +83,10 @@ const EventsPage = () => {
   }, [selectedEvent, isAutoPlay])
 
   useEffect(() => {
+    const LOADING_TIMEOUT_MS= 5000;
+
+    let timeoutId: NodeJS.Timeout | null = null;
+
     const fetchEvents = async () => {
       try {
         const eventsCollection = collection(db, "events")
@@ -103,9 +107,26 @@ const EventsPage = () => {
         console.error("Error fetching events:", error)
       } finally {
         setLoading(false)
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          timeoutId = null;
+        }
       }
     }
-    fetchEvents()
+
+    setLoading(true); 
+    timeoutId = setTimeout(() => {
+      setLoading(false); 
+      console.warn("Event data loading timed out.");
+    }, LOADING_TIMEOUT_MS);
+
+    fetchEvents();
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [])
 
   useEffect(() => {
@@ -183,7 +204,7 @@ const EventsPage = () => {
   }
 
   return (
-    <motion.div ref={pageRef} className="relative min-h-screen w-full bg-dark-green overflow-x-hidden" style={{ perspective: 1000 }}>
+    <motion.div ref={pageRef} className="relative min-h-screen w-full bg-dark-green" style={{ perspective: 1000 }}>
       <motion.div className="absolute inset-0 pointer-events-none">
         <svg className="events-circle absolute -top-16 -right-16 w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[600px] lg:h-[600px] md:-top-24 md:-right-24 lg:-top-32 lg:-right-32 opacity-6 z-30" viewBox="0 0 600 600" fill="none">
           <circle cx="300" cy="300" r="280" stroke="currentColor" strokeWidth="2" className="text-office-green animate-pulse" />
