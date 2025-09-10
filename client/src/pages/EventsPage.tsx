@@ -149,7 +149,7 @@ const EventsPage = () => {
       )
       if (!isMobile) {
         gsap.to(".events-circle", {
-          y: "random(-15, 15)", x: "random(-8, 8)", rotation: "random(-3, 3)",
+          y: "random(-15, 15)", rotation: "random(-3, 3)",
           duration: "random(4, 8)", repeat: -1, yoyo: true, ease: "sine.inOut", stagger: 0.2, delay: 2,
         })
       }
@@ -221,7 +221,7 @@ const EventsPage = () => {
       </motion.div>
 
       <div className="relative z-10 min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-24">
           <div className="text-center mb-12 sm:mb-16 md:mb-20">
             <motion.h1 className="page-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4" whileHover={!isMobile ? { scale: 1.02 } : {}} transition={{ type: "spring", stiffness: 300 }}>
               Our <span className="text-mindaro">Events</span>

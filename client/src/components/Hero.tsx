@@ -115,7 +115,6 @@ export default function Hero() {
       if (!isMobile) {
         gsap.to(".hero-circle", {
           y: "random(-20, 20)",
-          x: "random(-10, 10)",
           rotation: "random(-5, 5)",
           duration: "random(3, 6)",
           repeat: -1,

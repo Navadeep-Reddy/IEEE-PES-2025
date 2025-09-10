@@ -8,14 +8,14 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className="md:h-24 h-20 fixed  z-20 ">
+    <div className="fixed top-0 z-20 w-full">
       <div
-        className={`desktop-bar md:px-10 px-2 md:pt-4 h-20 md:h-24 w-full gap-x-2 fixed flex items-center justify-between bg-dark-green`}
+        className={`desktop-bar flex h-20 w-full items-center justify-between gap-x-2 bg-dark-green px-2 md:h-24 md:px-10 md:pt-4`}
       >
         <div className="logo-title flex items-center gap-x-4">
           <img
             src={Logo}
-            className="md:max-h-28 md:max-w-28 lg:max-w-32 lg:max-h-32 max-h-24 max-w-24 lg:-mt-4"
+            className="max-h-16 max-w-16 md:max-h-28 md:max-w-28 lg:-mt-4 lg:max-h-32 lg:max-w-32"
           />
           <div className=" hidden xl:flex gap-x-2">
             <h1 className=" lg:text-2xl text-office-green font-bold">IEEE</h1>
@@ -46,7 +46,7 @@ export default function Navbar() {
           </ul>
           <img
             src={College_Logo}
-            className="md:max-h-28 md:max-w-28 max-h-20 max-w-20"
+            className="max-h-12 max-w-12 md:max-h-28 md:max-w-28"
           />
           <div className=" lg:hidden">
             <Turn toggled={isOpen} toggle={setIsOpen} color="#FFFFFF" />
