@@ -13,3 +13,9 @@
   /* Font family */
   --font-sans: "Poppins", "Ancizar sans", sans-serif;
 }
+
+html,
+body {
+  overflow-x: hidden;
+  background-color: #102512;
+}

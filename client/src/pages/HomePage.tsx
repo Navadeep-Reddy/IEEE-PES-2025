@@ -5,7 +5,7 @@ import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 export default function HomePage() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Navbar />
       <Hero />
       <Commitment />
