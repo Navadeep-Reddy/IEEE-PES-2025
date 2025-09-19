@@ -51,7 +51,6 @@ const EventsPage = () => {
   const [isAutoPlay, setIsAutoPlay] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
   const [imageLoadErrors, setImageLoadErrors] = useState<Set<string>>(new Set())
-  const [modalTop, setModalTop] = useState(0)
   const pageRef = useRef<HTMLDivElement>(null)
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -160,7 +159,6 @@ const EventsPage = () => {
   const formatTime = (timestamp: Timestamp) => timestamp.toDate().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
 
   const openEventDetails = (event: Event) => {
-    setModalTop(window.scrollY)
     setSelectedEvent(event)
     setCurrentSlideIndex(0)
     setIsAutoPlay(true)
@@ -204,24 +202,24 @@ const EventsPage = () => {
   }
 
   return (
-    <motion.div ref={pageRef} className="relative min-h-screen w-full bg-dark-green" style={{ perspective: 1000 }}>
+    <motion.div ref={pageRef} className="relative min-h-screen w-full bg-dark-green pt-28 md:pt-36 lg:pt-40" style={{ perspective: 1000 }}>
       <motion.div className="absolute inset-0 pointer-events-none">
-        <svg className="events-circle absolute -top-16 -right-16 w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[600px] lg:h-[600px] md:-top-24 md:-right-24 lg:-top-32 lg:-right-32 opacity-6 z-30" viewBox="0 0 600 600" fill="none">
+        <svg className="events-circle absolute -top-16 -right-16 w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[600px] lg:h-[600px] md:-top-24 md:-right-24 lg:-top-32 lg:-right-32 opacity-6 z-10" viewBox="0 0 600 600" fill="none">
           <circle cx="300" cy="300" r="280" stroke="currentColor" strokeWidth="2" className="text-office-green animate-pulse" />
           <circle cx="300" cy="300" r="240" stroke="currentColor" strokeWidth="1.5" className="text-mindaro" />
         </svg>
-        <svg className="events-circle absolute top-1/2 -left-20 w-[350px] h-[350px] md:w-[525px] md:h-[525px] lg:w-[700px] lg:h-[700px] md:-left-30 lg:-left-40 opacity-8 transform -translate-y-1/2 z-30" viewBox="0 0 700 700" fill="none">
+        <svg className="events-circle absolute top-1/2 -left-20 w-[350px] h-[350px] md:w-[525px] md:h-[525px] lg:w-[700px] lg:h-[700px] md:-left-30 lg:-left-40 opacity-8 transform -translate-y-1/2 z-10" viewBox="0 0 700 700" fill="none">
           <circle cx="350" cy="350" r="320" stroke="currentColor" strokeWidth="2" className="text-mindaro animate-pulse" style={{ animationDelay: "2s" }} />
           <circle cx="350" cy="350" r="280" stroke="currentColor" strokeWidth="1.5" className="text-office-green" />
         </svg>
-        <svg className="events-circle absolute -bottom-20 -right-12 w-[250px] h-[250px] md:w-[375px] md:h-[375px] lg:w-[500px] lg:h-[500px] md:-bottom-30 md:-right-18 lg:-bottom-40 lg:-right-24 opacity-10 z-30" viewBox="0 0 500 500" fill="none">
+        <svg className="events-circle absolute -bottom-20 -right-12 w-[250px] h-[250px] md:w-[375px] md:h-[375px] lg:w-[500px] lg:h-[500px] md:-bottom-30 md:-right-18 lg:-bottom-40 lg:-right-24 opacity-10 z-10" viewBox="0 0 500 500" fill="none">
           <circle cx="250" cy="250" r="230" stroke="currentColor" strokeWidth="2" className="text-office-green animate-pulse" style={{ animationDelay: "4s" }} />
           <circle cx="250" cy="250" r="195" stroke="currentColor" strokeWidth="1.5" className="text-mindaro" />
         </svg>
       </motion.div>
 
       <div className="relative z-10 min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 sm:pt-6 sm:pb-12 md:pt-8 md:pb-16 lg:pt-12 lg:pb-24">
           <div className="text-center mb-12 sm:mb-16 md:mb-20">
             <motion.h1 className="page-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4" whileHover={!isMobile ? { scale: 1.02 } : {}} transition={{ type: "spring", stiffness: 300 }}>
               Our <span className="text-mindaro">Events</span>
@@ -326,8 +324,7 @@ const EventsPage = () => {
       <AnimatePresence>
         {selectedEvent && (
           <motion.div
-            className="absolute left-0 right-0 bg-dark-green/90 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 min-h-screen"
-            style={{ top: modalTop }}
+            className="fixed inset-0 bg-dark-green/90 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4"
             onClick={closeEventDetails}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
