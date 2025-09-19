@@ -232,7 +232,7 @@ const EventsPage = () => {
           {currentEvents.length > 0 && (
             <motion.div className="mb-16 sm:mb-20 md:mb-24" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
               <div className="text-center mb-8 sm:mb-12">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2"><span className="text-mindaro">Current</span> Events</h2>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2"><span className="text-mindaro">Upcoming</span> Events</h2>
                 <div className="h-1 bg-mindaro w-24 sm:w-32 md:w-40 mx-auto"></div>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
