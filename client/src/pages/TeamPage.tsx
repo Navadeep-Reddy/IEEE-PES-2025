@@ -1,22 +1,19 @@
 import GooeyLinks from "@/components/GooeyLinks";
 import React, { useState } from "react";
-import useWindowWidth from "@/components/useWindowWidth"; 
+import useWindowWidth from "@/components/useWindowWidth";
 
 export default function Team() {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [selectedMember, setSelectedMember] = useState(null);
-  const windowWidth = useWindowWidth(); 
-  const isSmallScreen = windowWidth < 768; 
+  const windowWidth = useWindowWidth();
+  const isSmallScreen = windowWidth < 768;
 
   const quote = '"WIRED FOR SUCCESS"';
 
   const teams = {
     "EXECUTIVE BOARD": [
-      "Anshul L - Vice Chair",
-      "Samyuktaa - Secretary",
       "Akshaya V V - Joint Secretary",
       "Sanjana Y - General Secretary",
-      "Sanjay M - Treasurer",
     ],
     "PR TEAM": [
       "Leelasri B - PR Head",
@@ -47,14 +44,45 @@ export default function Team() {
     ],
   };
 
-  
-  const positions = {
-    "EXECUTIVE BOARD": "top-[12%] right-[6%]",
-    "PR TEAM": "top-[12%] left-[6%]",
-    "DESIGN TEAM": "bottom-[10%] left-[8%]",
-    "WEB MASTER TEAM": "bottom-[10%] right-[8%]",
-    "EVENT MGMT": "bottom-[0%] left-1/2 transform -translate-x-1/2",
+  const memberLinkedIn = {
+    "Akshaya V V": "https://www.linkedin.com/in/akshaya-v-v/",
+    "Sanjana Y": "https://www.linkedin.com/in/sanjana-yoganand-b484542a4/",
   };
+
+  const facultyIncharge = {
+    role: "FACULTY INCHARGE",
+    name: "Thiyagarajan",
+    image: "/team/Thiyagarajan.jpeg",
+    // LinkedIn link is removed for the faculty member
+    linkedin: null,
+  };
+
+  const coreExecutives = [
+    {
+      role: "CHAIR PERSON",
+      name: "Rithvikha V",
+      image: "/team/Rithvikha.jpeg",
+      linkedin: "https://www.linkedin.com/in/rithvikha-v-b7946824a/",
+    },
+    {
+      role: "VICE CHAIR",
+      name: "Anshul L",
+      image: "/team/Anshul.jpg",
+      linkedin: "https://www.linkedin.com/in/anshul-l/",
+    },
+    {
+      role: "SECRETARY",
+      name: "Samyuktaa",
+      image: "/team/Samyuktaa.jpeg",
+      linkedin: "https://www.linkedin.com/in/samyukta-v-a4b56324a/",
+    },
+    {
+      role: "TREASURER",
+      name: "Sanjay M",
+      image: "/team/Sanjay.jpg",
+      linkedin: "https://www.linkedin.com/in/sanjay-m-664695305/",
+    },
+  ];
 
   const memberImages = {
     "Shiri Sakthi P N": "/team/Shiri.jpg",
@@ -82,174 +110,94 @@ export default function Team() {
     Samyuktaa: "/team/Samyuktaa.jpeg",
     "Sanjana Y": "/team/sanjana.jpg",
     "Sanjay M": "/team/Sanjay.jpg",
+    Thiyagarajan: "/team/Thiyagarajan.jpeg",
   };
 
   const toggleTeam = (team) => setSelectedTeam(team);
 
- 
-  const linearLayoutElements = [
-    { type: "chair", name: "Rithvikha V", image: memberImages["Rithvikha V"] },
-    ...Object.keys(teams).map((teamName) => ({ type: "team", name: teamName })),
-  ];
+  const allTeamBoxNames = Object.keys(teams);
 
   return (
     <div className="flex flex-col min-h-screen bg-[#102512] relative">
-      
-      <div className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <div className="absolute w-[1100px] h-[1100px] rounded-full neon-ring ring-1"></div>
-        <div className="absolute w-[900px] h-[900px] rounded-full neon-ring ring-2"></div>
-        <div className="absolute w-[700px] h-[700px] rounded-full neon-ring ring-3"></div>
-        <div className="absolute w-[500px] h-[500px] rounded-full neon-ring ring-4"></div>
-      </div>
-
       <main className="flex-grow pt-28 px-4">
-        
         <h1 className="text-5xl md:text-6xl font-extrabold text-center mb-2 bg-gradient-to-r from-[#e6f86d] via-white to-[#e6f86d] text-transparent bg-clip-text animate-glow-text relative z-10">
           OUR TEAM
         </h1>
         <h2 className="text-3xl font-bold text-white text-center mb-4 animate-fade-in-up relative z-10">
           {quote}
         </h2>
-        <p className="text-center text-[#e6f86d] text-md italic mb-8 animate-fade-in-up relative z-10 max-w-2xl mx-auto">
-          Fusing our energies dynamically to create electric achievements and
-          transformative outcomes.
-        </p>
 
-        {isSmallScreen ? (
-          
-          <div className="flex flex-col items-center py-8 px-4 z-10 relative">
-            {linearLayoutElements.map((element, index) => (
-              <React.Fragment key={index}>
-                {element.type === "chair" ? (
-                  
-                  <div
-                    onClick={() =>
-                      setSelectedMember({
-                        name: element.name,
-                        image: element.image,
-                      })
-                    }
-                    className="bg-[#e6f86d] text-[#203E2E] rounded-2xl p-3 w-60 text-center shadow-xl border-2 border-white animate-glow-text cursor-pointer my-4" // Added my-4
-                  >
-                    <img
-                      src={element.image}
-                      className="rounded-full w-20 h-20 mx-auto mb-2"
-                      alt={element.name}
-                    />
-                    <p className="text-sm font-semibold">CHAIR PERSON</p>
-                    <p className="text-lg font-bold">{element.name}</p>
-                  </div>
-                ) : (
-                  
-                  <div
-                    onClick={() => toggleTeam(element.name)}
-                    className={`group bg-[#e6f86d] text-[#203E2E] rounded-full w-48 h-48 flex flex-col items-center justify-center cursor-pointer
-                      transition duration-300 hover:scale-105 shadow-md hover:shadow-lg my-4`} // Added my-4
-                  >
-                    <p className="text-md font-bold whitespace-pre-line text-center">
-                      {element.name}
-                    </p>
-                    <span className="mt-1 text-[10px] opacity-60 hidden group-hover:block">
-                      👁 View Members
-                    </span>
-                  </div>
-                )}
-                
-                {index < linearLayoutElements.length - 1 && (
-                  <div className="linear-separator"></div>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        ) : (
-          
-          <div className="relative mx-auto w-full max-w-[800px] h-[600px] sm:h-[650px] md:h-[700px] lg:h-[550px] z-10 -mt-4 md:-mt-8 overflow-hidden">
-            
-            <svg
-              className="absolute w-full h-full z-0"
-              viewBox="0 0 800 600"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <path
-                d="M400 230 C 300 180, 180 140, 130 110"
-                stroke="#e6f86d"
-                strokeWidth="2.5"
-                fill="none"
-                className="glowing-line"
-              />
-              <path
-                d="M400 230 C 500 180, 620 140, 670 110"
-                stroke="#e6f86d"
-                strokeWidth="2.5"
-                fill="none"
-                className="glowing-line"
-              />
-              <path
-                d="M400 230 C 290 340, 200 420, 150 480"
-                stroke="#e6f86d"
-                strokeWidth="2.5"
-                fill="none"
-                className="glowing-line"
-              />
-              <path
-                d="M400 230 C 510 340, 600 420, 650 480"
-                stroke="#e6f86d"
-                strokeWidth="2.5"
-                fill="none"
-                className="glowing-line"
-              />
-              <path
-                d="M400 230 C 400 340, 400 470, 400 570"
-                stroke="#e6f86d"
-                strokeWidth="2.5"
-                fill="none"
-                className="glowing-line"
-              />
-            </svg>
-
-            
+        <div className="flex flex-col items-center w-full px-4 md:px-20 lg:px-40 space-y-8 pb-10">
+          <div
+            className="bg-[#e6f86d] text-[#203E2E] rounded-2xl p-8 sm:p-10 w-full max-w-[600px]
+             text-center shadow-2xl border-4 border-white animate-glow-text z-10"
+          >
+            <h3 className="text-2xl font-extrabold mb-6">CORE EXECUTIVES</h3>
             <div
+              className="mb-8 flex justify-center w-full"
               onClick={() =>
                 setSelectedMember({
-                  name: "Rithvikha V",
-                  image: memberImages["Rithvikha V"],
+                  name: facultyIncharge.name,
+                  image: facultyIncharge.image,
+                  linkedin: null, // Pass null to hide the LinkedIn button
                 })
               }
-              className="absolute top-[36%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#e6f86d] text-[#203E2E] rounded-2xl p-3 sm:p-4 w-48 sm:w-52 text-center shadow-xl border-2 border-white animate-glow-text cursor-pointer z-10"
             >
-              <img
-                src={memberImages["Rithvikha V"]}
-                className="rounded-full w-20 h-20 mx-auto mb-2"
-                alt="Rithvikha V"
-              />
-              <p className="text-sm font-semibold">CHAIR PERSON</p>
-              <p className="text-lg font-bold">Rithvikha V</p>
+              <div className="cursor-pointer hover:scale-105 transition">
+                <img
+                  src={facultyIncharge.image}
+                  alt={facultyIncharge.name}
+                  className="rounded-lg w-52 h-52 mx-auto mb-3 object-cover border-4 border-[#203E2E] shadow-lg"
+                />
+                <p className="text-base font-semibold">{facultyIncharge.role}</p>
+                <p className="text-lg font-bold">{facultyIncharge.name}</p>
+              </div>
             </div>
 
-            
-            {Object.keys(teams).map((teamName) => (
-              <div
-                key={teamName}
-                onClick={() => toggleTeam(teamName)}
-                className={`group absolute bg-[#e6f86d] text-[#203E2E] rounded-full w-28 h-28 sm:w-32 sm:h-32 flex flex-col items-center justify-center cursor-pointer
-                  transition duration-300 hover:scale-105 shadow-md hover:shadow-lg ${positions[teamName]}`}
-              >
-                <p className="text-sm font-bold whitespace-pre-line text-center">
-                  {teamName}
-                </p>
-                <span className="mt-1 text-[10px] opacity-60 hidden group-hover:block">
-                  👁 View Members
-                </span>
-              </div>
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {coreExecutives.map((member, idx) => (
+                <div
+                  key={idx}
+                  onClick={() =>
+                    setSelectedMember({
+                      name: member.name,
+                      image: member.image,
+                      linkedin: member.linkedin,
+                    })
+                  }
+                  className="cursor-pointer hover:scale-105 transition"
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="rounded-lg w-52 h-52 mx-auto mb-3 object-cover border-4 border-[#203E2E] shadow-lg"
+                  />
+                  <p className="text-base font-semibold">{member.role}</p>
+                  <p className="text-lg font-bold">{member.name}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        )}
+          {allTeamBoxNames.map(teamName => (
+            <div
+              key={teamName}
+              onClick={() => toggleTeam(teamName)}
+              className="group bg-[#e6f86d] text-[#203E2E] rounded-2xl w-full max-w-[600px] p-8 flex flex-col items-center justify-center cursor-pointer transition duration-300 hover:scale-[1.02] shadow-lg relative"
+            >
+              <p className="text-2xl font-bold text-center">{teamName}</p>
+              <div className="flex items-center justify-center mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-gray-600 text-lg mr-2">👀</span>
+                <span className="text-gray-600 text-lg">View Members</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </main>
 
-      
+      {/* TEAM POPUP */}
       {selectedTeam && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
-          <div className="popup-special text-white p-8 w-[90%] max-w-xl shadow-2xl relative animate-fade-in-up">
+          <div className="popup-special text-white p-8 w-[90%] max-w-xl shadow-2xl relative animate-fade-in-up border-4 border-white rounded-lg">
             <button
               onClick={() => setSelectedTeam(null)}
               className="absolute top-3 right-4 text-xl font-bold text-[#e6f86d]"
@@ -261,14 +209,17 @@ export default function Team() {
             </h2>
             <ul className="text-center space-y-3">
               {teams[selectedTeam].map((fullName, idx) => {
-                const [name] = fullName.split(" - "); 
+                const [name] = fullName.split(" - ");
+                const image = memberImages[name] || "/team/default.jpg";
+                const linkedin = memberLinkedIn[name];
                 return (
                   <li
                     key={idx}
                     onClick={() =>
                       setSelectedMember({
                         name,
-                        image: memberImages[name] || "/team/default.jpg", // Fallback image
+                        image,
+                        linkedin,
                       })
                     }
                     className="text-lg font-semibold hover:text-[#e6f86d] cursor-pointer"
@@ -282,10 +233,10 @@ export default function Team() {
         </div>
       )}
 
-     
+      {/* MEMBER POPUP */}
       {selectedMember && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 backdrop-blur-sm">
-          <div className="popup-special text-white p-6 w-[90%] max-w-sm relative animate-fade-in-up">
+          <div className="popup-special text-white p-10 w-[90%] max-w-sm relative animate-fade-in-up border-4 border-white rounded-lg">
             <button
               onClick={() => setSelectedMember(null)}
               className="absolute top-3 right-4 text-xl font-bold text-[#e6f86d]"
@@ -294,12 +245,22 @@ export default function Team() {
             </button>
             <img
               src={selectedMember.image}
-              className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-[#e6f86d]"
-              alt={selectedMember.name} 
+              className="w-56 h-56 rounded-full mx-auto mb-4 border-4 border-[#e6f86d] object-cover"
+              alt={selectedMember.name}
             />
             <p className="text-2xl font-bold text-center underline decoration-[#e6f86d]">
               {selectedMember.name}
             </p>
+            {selectedMember.linkedin && (
+              <a
+                href={selectedMember.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 flex justify-center items-center text-white bg-[#0077b5] px-4 py-2 rounded-full font-semibold transition hover:bg-[#005582]"
+              >
+                View LinkedIn
+              </a>
+            )}
           </div>
         </div>
       )}
@@ -307,68 +268,6 @@ export default function Team() {
       <footer className="mt-50 w-full ">
         <GooeyLinks />
       </footer>
-
-      
-      <style>{`
-        /* Global Box-Sizing for better layout consistency */
-        html {
-          box-sizing: border-box;
-        }
-        *, *::before, *::after {
-          box-sizing: inherit;
-        }
-
-        /* Your existing animations and styles */
-        @keyframes glowText {
-          0%, 1% { text-shadow: 0 0 4px #e6f86d, 0 0 8px #e6f86d; }
-          50% { text-shadow: 0 0 6px #e6f86d, 0 0 10px #e6f86d; }
-          100% { text-shadow: 0 0 4px #e6f86d, 0 0 8px #e6f86d; }
-        }
-        .animate-glow-text { animation: glowText 3s ease-in-out infinite; }
-
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up { animation: fadeInUp 0.6s ease-out; }
-
-        .popup-special {
-          animation: fadeInUp 0.3s ease-out;
-          backdrop-filter: blur(10px);
-          background: rgba(255, 255, 255, 0.05);
-          border-radius: 1rem;
-          border: 2px solid #e6f86d;
-        }
-
-        .glowing-line {
-          filter: drop-shadow(0 0 4px #e6f86d);
-        }
-
-        /* New style for the linear separator line */
-        .linear-separator {
-          width: 2px; /* Thin vertical line */
-          height: 80px; /* Length of the line, adjust as needed */
-          background-color: #e6f86d; /* Color of the line */
-          filter: drop-shadow(0 0 4px #e6f86d); /* Glowing effect */
-          margin: 1rem 0; /* Add some space above and below the line */
-        }
-
-
-        @keyframes pulseRingSimultaneous {
-          0%, 100% { transform: scale(1); opacity: 0.4; }
-          50% { transform: scale(1.06); opacity: 0.8; }
-        }
-
-        .neon-ring {
-          border-width: 2px;
-          animation: pulseRingSimultaneous 5s ease-in-out infinite;
-        }
-
-        .ring-1 { border-color: #1c8b22; }
-        .ring-2 { border-color: #f8faf8; }
-        .ring-3 { border-color: #d0ef74; }
-        .ring-4 { border-color: #778c8b; }
-      `}</style>
     </div>
   );
 }
