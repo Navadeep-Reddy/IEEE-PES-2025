@@ -1,16 +1,28 @@
+import { useState } from "react";
 import GooeyLinks from "@/components/GooeyLinks";
-import React, { useState } from "react";
-import useWindowWidth from "@/components/useWindowWidth";
+
+interface Member {
+  role: string;
+  name: string;
+  image: string;
+  linkedin: string | null;
+}
+
+interface SelectedMember {
+  name: string;
+  image: string;
+  linkedin: string | null;
+}
 
 export default function Team() {
-  const [selectedTeam, setSelectedTeam] = useState(null);
-  const [selectedMember, setSelectedMember] = useState(null);
-  const windowWidth = useWindowWidth();
-  const isSmallScreen = windowWidth < 768;
+  
+  const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
+  const [selectedMember, setSelectedMember] = useState<SelectedMember | null>(null);
 
   const quote = '"WIRED FOR SUCCESS"';
 
-  const teams = {
+  
+  const teams: Record<string, string[]> = {
     "EXECUTIVE BOARD": [
       "Akshaya V V - Joint Secretary",
       "Sanjana Y - General Secretary",
@@ -44,20 +56,19 @@ export default function Team() {
     ],
   };
 
-  const memberLinkedIn = {
+  const memberLinkedIn: Record<string, string | null> = {
     "Akshaya V V": "https://www.linkedin.com/in/akshaya-v-v/",
     "Sanjana Y": "https://www.linkedin.com/in/sanjana-yoganand-b484542a4/",
   };
 
-  const facultyIncharge = {
+  const facultyIncharge: Member = {
     role: "FACULTY INCHARGE",
     name: "Thiyagarajan",
     image: "/team/Thiyagarajan.jpeg",
-    // LinkedIn link is removed for the faculty member
     linkedin: null,
   };
 
-  const coreExecutives = [
+  const coreExecutives: Member[] = [
     {
       role: "CHAIR PERSON",
       name: "Rithvikha V",
@@ -74,7 +85,7 @@ export default function Team() {
       role: "SECRETARY",
       name: "Samyuktaa",
       image: "/team/Samyuktaa.jpeg",
-      linkedin: "https://www.linkedin.com/in/samyukta-v-a4b56324a/",
+      linkedin: "https://www.linkedin.com/in/samyuktaa-sivakumar-128524219/",
     },
     {
       role: "TREASURER",
@@ -84,7 +95,7 @@ export default function Team() {
     },
   ];
 
-  const memberImages = {
+  const memberImages: Record<string, string> = {
     "Shiri Sakthi P N": "/team/Shiri.jpg",
     "Akshaya V V": "/team/akshaya.jpg",
     "Rithvikha V": "/team/Rithvikha.jpeg",
@@ -96,7 +107,7 @@ export default function Team() {
     "Harinath Vaitheeswar S": "/team/Harinath.jpg",
     "Jayasurya S": "/team/Jayasurya.png",
     "Avinash R": "/team/Avinash R.jpg",
-    HarshikaaSundari: "/team/Harshikaa.jpg",
+    "HarshikaaSundari": "/team/Harshikaa.jpg",
     "Praveen N R": "/team/Praveen.jpg",
     Yashasvee: "/team/yashasvee.jpg",
     "Shivashankar P": "/team/Shivashankar.jpg",
@@ -113,7 +124,7 @@ export default function Team() {
     Thiyagarajan: "/team/Thiyagarajan.jpeg",
   };
 
-  const toggleTeam = (team) => setSelectedTeam(team);
+  const toggleTeam = (team: string) => setSelectedTeam(team);
 
   const allTeamBoxNames = Object.keys(teams);
 
@@ -139,7 +150,7 @@ export default function Team() {
                 setSelectedMember({
                   name: facultyIncharge.name,
                   image: facultyIncharge.image,
-                  linkedin: null, // Pass null to hide the LinkedIn button
+                  linkedin: null,
                 })
               }
             >
@@ -178,7 +189,7 @@ export default function Team() {
               ))}
             </div>
           </div>
-          {allTeamBoxNames.map(teamName => (
+          {allTeamBoxNames.map((teamName) => (
             <div
               key={teamName}
               onClick={() => toggleTeam(teamName)}
@@ -208,7 +219,7 @@ export default function Team() {
               {selectedTeam}
             </h2>
             <ul className="text-center space-y-3">
-              {teams[selectedTeam].map((fullName, idx) => {
+              {teams[selectedTeam]?.map((fullName, idx) => {
                 const [name] = fullName.split(" - ");
                 const image = memberImages[name] || "/team/default.jpg";
                 const linkedin = memberLinkedIn[name];
