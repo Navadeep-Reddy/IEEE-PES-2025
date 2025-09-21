@@ -1,6 +1,5 @@
 import { useState } from "react";
 import GooeyLinks from "@/components/GooeyLinks";
-
 interface Member {
   role: string;
   name: string;
@@ -23,10 +22,6 @@ export default function Team() {
   );
 
   const teams: Record<string, string[]> = {
-    "EXECUTIVE BOARD": [
-      "Akshaya V V - Joint Secretary",
-      "Sanjana Y - General Secretary",
-    ],
     "PR TEAM": [
       "Leelasri B - PR Head",
       "Shravanthi D - PR Member",
