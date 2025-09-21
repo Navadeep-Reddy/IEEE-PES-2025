@@ -1,2 +1,3 @@
-declare const useWindowWidth: () => number;
-export default useWindowWidth;
+declare module '@/components/useWindowWidth' {
+  export default function useWindowWidth(): number;
+}

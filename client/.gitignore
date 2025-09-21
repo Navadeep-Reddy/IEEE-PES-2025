@@ -1,39 +1,4 @@
-# Node modules
 node_modules/
-
-# Environment files
-.env
-.env.*     # like .env.development, .env.production
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Vite
-dist/
-.vite/
-.vitepress/
-*.local
-
-# Mac system files
-.DS_Store
-
-# VSCode settings
-.vscode/
-
-# Firebase (if using emulators or config caching)
-.firebase/
-firestore-debug.log
-firebase-debug.log
-
-# Build output
-build/
-*.tsbuildinfo
-
-# TypeScript cache
-*.tsbuildinfo
-
-# Other configs that shouldn't go into Git
-nohup.out
+package-lock.json
+.pnpm-lock.yaml
+pnpm-lock.yaml
