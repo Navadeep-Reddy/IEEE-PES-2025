@@ -22,6 +22,10 @@ export default function Team() {
   );
 
   const teams: Record<string, string[]> = {
+    "EXECUTIVE BOARD": [
+      "Akshaya V V - Joint Secretary",
+      "Sanjana Y - General Secretary",
+    ],
     "PR TEAM": [
       "Leelasri B - PR Head",
       "Shravanthi D - PR Member",
