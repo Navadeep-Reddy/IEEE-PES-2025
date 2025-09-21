@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import GooeyLinks from "@/components/GooeyLinks";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import { useState, ChangeEvent, FormEvent } from "react";
+import GooeyLinks from "@/components/GooeyLinks"; 
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,10 +8,11 @@ export default function Contact() {
     description: "",
   });
 
-  const handleChange = (e) =>
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Submitted Data:", formData);
     alert("Form submitted!");
@@ -24,14 +23,6 @@ export default function Contact() {
       className="min-h-screen flex flex-col justify-between pt-28 pb-0 px-4 relative overflow-hidden"
       style={{ backgroundColor: "#102512" }}
     >
-      {/* Background Glow Rings */}
-      <div className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <div className="absolute w-[1100px] h-[1100px] rounded-full neon-ring ring-1"></div>
-        <div className="absolute w-[900px] h-[900px] rounded-full neon-ring ring-2"></div>
-        <div className="absolute w-[700px] h-[700px] rounded-full neon-ring ring-3"></div>
-        <div className="absolute w-[500px] h-[500px] rounded-full neon-ring ring-4"></div>
-      </div>
-
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center w-full">
         <h1 className="text-4xl md:text-5xl font-bold mb-10 text-center bg-gradient-to-r from-[#e6f86d] via-white to-[#e6f86d] text-transparent bg-clip-text animate-glow-text">
@@ -101,10 +92,9 @@ export default function Contact() {
         {/* Divider */}
         <div className="h-1 w-24 bg-[#e6f86d] mt-16 mb-6 rounded-full opacity-70"></div>
 
-        {/* Gooey Links and Footer */}
+        {/* Gooey Links */}
         <div className="w-full">
           <GooeyLinks />
-          
         </div>
       </div>
 
@@ -127,22 +117,6 @@ export default function Contact() {
         .animate-fade-in-up {
           animation: fadeInUp 0.6s ease-out;
         }
-
-        @keyframes pulseRingSimultaneous {
-          0% { transform: scale(1); opacity: 0.4; }
-          50% { transform: scale(1.06); opacity: 0.8; }
-          100% { transform: scale(1); opacity: 0.4; }
-        }
-
-        .neon-ring {
-          border-width: 2px;
-          animation: pulseRingSimultaneous 5s ease-in-out infinite;
-        }
-
-        .ring-1 { border-color: #1c8b22; }
-        .ring-2 { border-color: #f8faf8; }
-        .ring-3 { border-color: #d0ef74; }
-        .ring-4 { border-color: #778c8b; }
       `}</style>
     </div>
   );
