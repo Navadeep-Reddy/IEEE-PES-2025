@@ -18,7 +18,9 @@ interface SelectedMember {
 
 export default function Team() {
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
-  const [selectedMember, setSelectedMember] = useState<SelectedMember | null>(null);
+  const [selectedMember, setSelectedMember] = useState<SelectedMember | null>(
+    null
+  );
 
   const teams: Record<string, string[]> = {
     "EXECUTIVE BOARD": [
@@ -126,7 +128,7 @@ export default function Team() {
     "Harinath Vaitheeswar S": "/team/Harinath.jpg",
     "Jayasurya S": "/team/Jayasurya.png",
     "Avinash R": "/team/Avinash R.jpg",
-    "HarshikaaSundari": "/team/Harshikaa.jpg",
+    HarshikaaSundari: "/team/Harshikaa.jpg",
     "Praveen N R": "/team/Praveen.jpg",
     Yashasvee: "/team/yashasvee.jpg",
     "Shivashankar P": "/team/Shivashankar.jpg",
