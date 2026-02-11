@@ -1,8 +1,23 @@
 "use client"
 
 import { useEffect, useState, useRef } from "react"
-import { db } from "../lib/firebase"
-import { collection, getDocs, query, where, type Timestamp } from "firebase/firestore"
+type ApiEvent = {
+  id: string
+  title: string
+  description: string
+  posterUrl: string
+  startDate: string | null
+  isCurrent: boolean
+  speakerName?: string
+  speakerInfo?: string
+  registrationLink?: string
+  regLink?: string
+  googleFormLink?: string
+  galleryUrls?: string[]
+  galleryImageUrls?: string[]
+  venue?: string
+  capacity?: number
+}
 import { gsap } from "gsap"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -24,23 +39,7 @@ import {
   ImageIcon,
 } from "lucide-react"
 
-interface Event {
-  id: string
-  title: string
-  description: string
-  posterUrl: string
-  startDate: Timestamp
-  isCurrent: boolean
-  speakerName?: string
-  speakerInfo?: string
-  registrationLink?: string
-  regLink?: string
-  googleFormLink?: string
-  galleryUrls?: string[]
-  galleryImageUrls?: string[]
-  venue?: string
-  capacity?: number
-}
+type Event = ApiEvent
 
 const EventsPage = () => {
   const [currentEvents, setCurrentEvents] = useState<Event[]>([])
@@ -88,20 +87,18 @@ const EventsPage = () => {
 
     const fetchEvents = async () => {
       try {
-        const eventsCollection = collection(db, "events")
-        const currentEventQuery = query(eventsCollection, where("isCurrent", "==", true))
-        const currentEventSnapshot = await getDocs(currentEventQuery)
-        const currentEventsList = currentEventSnapshot.docs
-          .map((doc) => ({ id: doc.id, ...doc.data() }) as Event)
-          .sort((a, b) => b.startDate.toMillis() - a.startDate.toMillis())
-        setCurrentEvents(currentEventsList)
+        const response = await fetch("/api/events")
+        if (!response.ok) {
+          throw new Error(`Failed to fetch events: ${response.status}`)
+        }
 
-        const pastEventsQuery = query(eventsCollection, where("isCurrent", "==", false))
-        const pastEventsSnapshot = await getDocs(pastEventsQuery)
-        const pastEventsList = pastEventsSnapshot.docs
-          .map((doc) => ({ id: doc.id, ...doc.data() }) as Event)
-          .sort((a, b) => b.startDate.toMillis() - a.startDate.toMillis())
-        setPastEvents(pastEventsList)
+        const data = (await response.json()) as {
+          currentEvents: Event[]
+          pastEvents: Event[]
+        }
+
+        setCurrentEvents(data.currentEvents || [])
+        setPastEvents(data.pastEvents || [])
       } catch (error) {
         console.error("Error fetching events:", error)
       } finally {
@@ -155,8 +152,8 @@ const EventsPage = () => {
     }
   }, [loading, isMobile])
 
-  const formatDate = (timestamp: Timestamp) => timestamp.toDate().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
-  const formatTime = (timestamp: Timestamp) => timestamp.toDate().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
+  const formatDate = (dateIso: string | null) => dateIso ? new Date(dateIso).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" }) : ""
+  const formatTime = (dateIso: string | null) => dateIso ? new Date(dateIso).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }) : ""
 
   const openEventDetails = (event: Event) => {
     setSelectedEvent(event)
