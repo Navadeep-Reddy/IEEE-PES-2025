@@ -1,3 +1,4 @@
+# dependencies
 node_modules/
 
 # build output
@@ -20,6 +21,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 *.log
+nohup.out
 
 # env files
 .env
@@ -33,5 +35,3 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
-.vercel
-.env*.local
